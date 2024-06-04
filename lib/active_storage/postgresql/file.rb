@@ -1,4 +1,4 @@
-class ActiveStorage::PostgreSQL::File < ActiveRecord::Base
+class ActiveStorage::PostgreSQL::File < (defined?(Rails) && Rails.gem_version >= Gem::Version.new("7.0") ? ApplicationRecord : ActiveRecord::Base)
   self.table_name = "active_storage_postgresql_files"
 
   attribute :oid, :integer, default: ->{ connection.raw_connection.lo_creat }
